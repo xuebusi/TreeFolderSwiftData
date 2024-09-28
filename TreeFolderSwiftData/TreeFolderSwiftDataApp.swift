@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct TreeFolderSwiftDataApp: App {
@@ -13,5 +14,6 @@ struct TreeFolderSwiftDataApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Directory.self)
     }
 }

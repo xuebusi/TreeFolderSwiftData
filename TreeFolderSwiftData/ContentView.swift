@@ -43,6 +43,7 @@ struct ContentView: View {
                 
                 HStack {
                     Button("添加数据") {
+                        deleteAllSampleData()
                         generateSampleData()
                     }
                     .buttonStyle(.bordered)
@@ -57,12 +58,14 @@ struct ContentView: View {
         }
     }
     
+    // 滑动删除目录
     private func deleteDirectory() {
         if let directoryToDelete {
             context.delete(directoryToDelete)
         }
     }
     
+    // 移动目录
     private func moveDirectory() {
         
     }
@@ -97,6 +100,31 @@ struct ContentView: View {
         context.insert(subSub2)
         context.insert(subSub3)
         context.insert(subSub4)
+    }
+    
+    /**
+     // 生成目录
+     private func generateSampleData2() {
+         let rootDirectory = generateDeepDirectory(parent: nil, depth: 1, maxDepth: 15)
+     }
+     
+     // 生成指定最大深度的目录结构
+     private func generateDeepDirectory(parent: Directory?, depth: Int, maxDepth: Int) -> Directory {
+         let directory = Directory(name: "目录层级 \(depth)", parent: parent)
+         context.insert(directory)
+         
+         // 当还没有达到最大深度时，继续创建子目录
+         if depth < maxDepth {
+             let childDirectory = generateDeepDirectory(parent: directory, depth: depth + 1, maxDepth: maxDepth)
+             context.insert(childDirectory)
+         }
+         
+         return directory
+     }
+     */
+    
+    private func deleteAllSampleData() {
+        try? context.delete(model: Directory.self)
     }
 }
 
